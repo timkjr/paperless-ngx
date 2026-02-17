@@ -1,0 +1,13 @@
+{
+  "embedding": {
+    "provider": "voyageai",
+    "model": "voyage-3.5",
+    "api_key": "pa-F8elmzZigD0wAqYpXEMLBnND7gSY3GY-9vVdFUVGESy",
+    "rerank_model": "rerank-2.5"
+  },
+  "indexing": {
+    "exclude": [
+      "docs/changelog.md"
+    ]
+  }
+}

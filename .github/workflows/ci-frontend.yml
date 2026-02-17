@@ -155,6 +155,8 @@ jobs:
           key: ${{ runner.os }}-frontend-${{ hashFiles('src-ui/pnpm-lock.yaml') }}
       - name: Re-link Angular CLI
         run: cd src-ui && pnpm link @angular/cli
+      - name: Install system dependencies
+        run: apt-get update && apt-get install -y pkg-config libpixman-1-dev
       - name: Install dependencies
         run: cd src-ui && pnpm install --no-frozen-lockfile
       - name: Run Playwright E2E tests

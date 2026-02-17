@@ -389,6 +389,12 @@ export class FilterEditorComponent
   storagePathSelectionModel = new FilterableDropdownSelectionModel()
   customFieldQueriesModel = new CustomFieldQueriesModel()
 
+  // Lazy loading flags to prevent loading all items on init
+  private tagsLoaded = false
+  private correspondentsLoaded = false
+  private documentTypesLoaded = false
+  private storagePathsLoaded = false
+
   dateCreatedTo: string
   dateCreatedFrom: string
   dateAddedTo: string
@@ -1152,6 +1158,9 @@ export class FilterEditorComponent
 
   ngOnInit() {
     this.loading = true
+    // LAZY LOADING: Moved to onXXXDropdownOpen() methods to prevent loading all items on page load
+    // This fixes the 27-second dashboard load with 4,000+ tags
+    /*
     if (
       this.permissionsService.currentUserCan(
         PermissionAction.View,
@@ -1200,6 +1209,7 @@ export class FilterEditorComponent
         this.maybeCompleteLoading()
       })
     }
+    */
     if (
       this.permissionsService.currentUserCan(
         PermissionAction.View,
@@ -1264,18 +1274,70 @@ export class FilterEditorComponent
   }
 
   onTagsDropdownOpen() {
+    // Lazy load tags on first dropdown open
+    if (
+      !this.tagsLoaded &&
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.Tag
+      )
+    ) {
+      this.tagService.listAll().subscribe((result) => {
+        this.tagSelectionModel.items = flattenTags(result.results)
+        this.tagsLoaded = true
+      })
+    }
     this.tagSelectionModel.apply()
   }
 
   onCorrespondentDropdownOpen() {
+    // Lazy load correspondents on first dropdown open
+    if (
+      !this.correspondentsLoaded &&
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.Correspondent
+      )
+    ) {
+      this.correspondentService.listAll().subscribe((result) => {
+        this.correspondentSelectionModel.items = result.results
+        this.correspondentsLoaded = true
+      })
+    }
     this.correspondentSelectionModel.apply()
   }
 
   onDocumentTypeDropdownOpen() {
+    // Lazy load document types on first dropdown open
+    if (
+      !this.documentTypesLoaded &&
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.DocumentType
+      )
+    ) {
+      this.documentTypeService.listAll().subscribe((result) => {
+        this.documentTypeSelectionModel.items = result.results
+        this.documentTypesLoaded = true
+      })
+    }
     this.documentTypeSelectionModel.apply()
   }
 
   onStoragePathDropdownOpen() {
+    // Lazy load storage paths on first dropdown open
+    if (
+      !this.storagePathsLoaded &&
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.StoragePath
+      )
+    ) {
+      this.storagePathService.listAll().subscribe((result) => {
+        this.storagePathSelectionModel.items = result.results
+        this.storagePathsLoaded = true
+      })
+    }
     this.storagePathSelectionModel.apply()
   }
 

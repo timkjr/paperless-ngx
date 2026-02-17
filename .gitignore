@@ -47,6 +47,17 @@ coverage.xml
 .pytest_cache
 junit.xml
 
+# Chunkhound database (large binary)
+.chunkhound/db
+.chunkhound/db.wal
+.chunkhound/*.corrupt
+
+# Large build artifacts
+*.tar
+*.tar.gz
+docker_build.pid
+optimizations.patch
+
 # Translations
 *.mo
 *.pot

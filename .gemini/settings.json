@@ -1,0 +1,14 @@
+{
+  "ui": {
+    "showLineNumbers": false
+  },
+  "mcpServers": {
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@cyanheads/git-mcp-server"
+      ]
+    }
+  }
+}
