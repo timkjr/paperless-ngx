@@ -1,6 +1,6 @@
 [project]
 name = "paperless-ngx"
-version = "2.20.6"
+version = "2.20.7"
 description = "A community-supported supercharged document management system: scan, index and archive all your physical documents"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -106,8 +106,7 @@ dev = [
 ]
 
 docs = [
-  "mkdocs-glightbox~=0.5.1",
-  "mkdocs-material~=9.7.0",
+  "zensical>=0.0.21",
 ]
 
 testing = [
