@@ -17,9 +17,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Login to Forgejo registry
-        run: echo "${{ gitea.token }}" | docker login git-forgejo.k-lab.lan:3000 -u timkjr --password-stdin
+        run: echo "${{ github.token }}" | docker login git-forgejo.k-lab.lan:3000 -u timkjr --password-stdin
       - name: Build and push
         run: |
+          export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
           DATE=$(date +%Y%m%d)
           SHA=$(echo "${{ github.sha }}" | cut -c1-8)
 
