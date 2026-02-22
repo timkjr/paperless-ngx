@@ -122,3 +122,8 @@ celerybeat-schedule*
 
 # ignore pnpm package store folder created when setting up the devcontainer
 .pnpm-store/
+
+# Local Claude Code config and scratch scripts
+.claude/
+scripts/cleanup_test_tags.py
+scripts/generate_test_tags.py
