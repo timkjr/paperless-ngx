@@ -9,6 +9,15 @@
         "-y",
         "@cyanheads/git-mcp-server"
       ]
+    },
+    "chunkhound": {
+      "command": "chunkhound",
+      "args": [
+        "mcp",
+        ".",
+        "--db",
+        ".chunkhound/db"
+      ]
     }
   }
 }

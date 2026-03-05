@@ -9,5 +9,8 @@
     "exclude": [
       "docs/changelog.md"
     ]
+  },
+  "llm": {
+    "provider": "claude-code-cli"
   }
 }
