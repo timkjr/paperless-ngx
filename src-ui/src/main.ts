@@ -8,6 +8,7 @@ import {
 import { DragDropModule } from '@angular/cdk/drag-drop'
 import { DatePipe, registerLocaleData } from '@angular/common'
 import {
+  HTTP_INTERCEPTORS,
   provideHttpClient,
   withFetch,
   withInterceptors,
@@ -152,6 +153,7 @@ import { DirtyDocGuard } from './app/guards/dirty-doc.guard'
 import { DirtySavedViewGuard } from './app/guards/dirty-saved-view.guard'
 import { PermissionsGuard } from './app/guards/permissions.guard'
 import { withApiVersionInterceptor } from './app/interceptors/api-version.interceptor'
+import { AuthExpiryInterceptor } from './app/interceptors/auth-expiry.interceptor'
 import { withCsrfInterceptor } from './app/interceptors/csrf.interceptor'
 import { DocumentTitlePipe } from './app/pipes/document-title.pipe'
 import { FilterPipe } from './app/pipes/filter.pipe'
@@ -381,6 +383,11 @@ bootstrapApplication(AppComponent, {
     provideAppInitializer(initializeApp),
     DatePipe,
     CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthExpiryInterceptor,
+      multi: true,
+    },
     FilterPipe,
     DocumentTitlePipe,
     { provide: NgbDateAdapter, useClass: ISODateAdapter },
