@@ -38,8 +38,8 @@ export class TagComponent {
           PermissionType.Tag
         )
       ) {
-        this.tagService.getCached(this._tagID).subscribe((tag) => {
-          this.tag = tag
+        this.tagService.getFew([this._tagID]).subscribe((result) => {
+          this.tag = result.results[0]
         })
       }
     }

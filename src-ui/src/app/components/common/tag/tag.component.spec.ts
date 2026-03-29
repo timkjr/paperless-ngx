@@ -62,10 +62,10 @@ describe('TagComponent', () => {
 
   it('should support retrieving tag by ID', () => {
     jest.spyOn(permissionsService, 'currentUserCan').mockReturnValue(true)
-    const getCachedSpy = jest.spyOn(tagService, 'getCached')
-    getCachedSpy.mockReturnValue(of(tag))
+    const getFewSpy = jest.spyOn(tagService, 'getFew')
+    getFewSpy.mockReturnValue(of({ results: [tag] }))
     component.tagID = 1
-    expect(getCachedSpy).toHaveBeenCalledWith(1)
+    expect(getFewSpy).toHaveBeenCalledWith([1])
     expect(component.tag).toEqual(tag)
   })
 })
