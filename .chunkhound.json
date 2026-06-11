@@ -11,6 +11,6 @@
     ]
   },
   "llm": {
-    "provider": "claude-code-cli"
+    "provider": "gemini"
   }
 }

@@ -12,7 +12,7 @@ COPY ./src-ui /src/src-ui
 WORKDIR /src/src-ui
 RUN set -eux \
   && corepack enable \
-  && pnpm install
+  && pnpm install --frozen-lockfile
 
 ARG PNGX_TAG_VERSION=
 # Add the tag to the environment file if its a tagged dev build

@@ -5,7 +5,10 @@
       "args": [
         "mcp"
       ],
-      "env": {}
+      "env": {
+        "CHUNKHOUND_CONFIG_FILE": "/home/timkjr/.config/chunkhound/config.json",
+        "ENABLE_TOOL_SEARCH": "true"
+      }
     }
   }
 }
